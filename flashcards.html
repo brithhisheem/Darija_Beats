@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darija Beats</title>
+  <link rel="icon" type="image/png" href="darija beat.png">
+  <a href="index.html">
+    <img src="darija beat.png" alt="Darija 4U Logo" class="main-logo" style="width: 200px; max-width: 90%;">  
+    </a>
+    <section id="flashcards" style="padding: 40px 20px; background-color: #f5f5f5;">
+        <h2 style="text-align: center; margin-bottom: 30px;">🃏 Darija Flashcards</h2>
+        <div class="flashcard-container">
+          <div class="flashcard" onclick="flipCard(this)">
+            <div class="card-inner">
+              <div class="card-front">salam 👋🏼</div>
+              <div class="card-back">
+                Hello 👋🏼
+                <button onclick="playAudio(event, 'salam')">🔊</button>
+              </div>
+            </div>
+          </div>
+      <div class="flashcard" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front">chokran 🙏🏼</div>
+          <div class="card-back">
+            Thank you 🙏🏼
+            <button onclick="playAudio(event, 'chokran')">🔊</button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="flashcard" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front">fin tobis? 🤷🏼‍♂️</div>
+          <div class="card-back">
+            Where is the bus? 🤷🏼‍♂️
+            <button onclick="playAudio(event, 'bus')">🔊</button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="flashcard" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front">limen 👉🏼</div>
+          <div class="card-back">
+            Right 👉🏼
+            <button onclick="playAudio(event, 'right')">🔊</button>
+          </div>
+        </div>
+      </div>
+  
+      <div class="flashcard" onclick="flipCard(this)">
+        <div class="card-inner">
+          <div class="card-front">liser 👈🏼</div>
+          <div class="card-back">
+            Left 👈🏼
+            <button onclick="playAudio(event, 'left')">🔊</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flashcard" onclick="flipCard(this)">
+      <div class="card-inner">
+        <div class="card-front">labass alik?</div>
+        <div class="card-back">
+          how are you?
+          <button onclick="playAudio(event, 'labass alik?')">🔊</button>
+        </div> 
+      </div>
+    </div>     
+    <!-- Audio -->
+    <audio id="salam" src="audio/salam.mp3"></audio>
+    <audio id="chokran" src="audio/chokran.mp3"></audio>
+    <audio id="bus" src="audio/bus.mp3"></audio>
+    <audio id="right" src="audio/right.mp3"></audio>
+    <audio id="left" src="audio/left.mp3"></audio>
+    <audio id="labass alik?"  src="howareyou.mp3"></audio>
+  </section>
+  <script>
+
+    function flipCard(card) {
+    const inner = card.querySelector('.card-inner');
+    inner.classList.toggle('flipped');
+  }
+
+  function playAudio(event, id) {
+    event.stopPropagation(); // Prevent flip on button click
+    const audio = document.getElementById(id);
+    if (audio) {
+      audio.play();
+    }
+  }
+  </script>
+      <style>
+         .main-logo {
+  width: 200px;
+  max-width: 90%;
+  display: block;
+  margin: 20px auto;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border-radius: 24px;
+}
+.main-logo:hover {
+  transform: scale(1.05);
+}
+        * {
+          box-sizing: border-box;
+        }
+        html, body {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+        html {
+          font-size: 16px;
+        }
+        @media (max-width: 600px) {
+          html {
+            font-size: 14px;
+          }
+        }
+        @media (max-width: 400px) {
+          html {
+            font-size: 12px;
+          }
+        }
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-color: #fefae0;
+          color: #333;
+        }
+        .flashcard-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+        }
+        .flashcard {
+          width: 150px;
+          height: 200px;
+          perspective: 1000px;
+        }
+        .card-inner {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          transition: transform 0.6s;
+          transform-style: preserve-3d;
+        }
+        .card-front, .card-back {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          backface-visibility: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 24px;
+          border-radius: 12px;
+          box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+          background-color: #fff;
+        }
+        .card-front {
+          background-color: #e9edc9;
+        }
+        .card-back {
+          background-color: #f9c74f;
+          transform: rotateY(180deg);
+        }
+        .card-inner.flipped {
+          transform: rotateY(180deg);
+        }
+        button {
+          background-color: #f9c74f;
+          border: none;
+          padding: 10px;
+          border-radius: 8px;
+          cursor: pointer;
+          font-size: 16px;
+        }
+        button:hover {
+          background-color: #f3722c;
+        }
+        .main-logo {
+          display: block;
+          margin: 0 auto;
+          max-width: 100%;
+        }
+        .main-logo:hover {
+          transform: scale(1.05);
+        }
+        @media (max-width: 600px) {
+          .flashcard {
+            width: 100px;
+            height: 150px;
+          }
+          .card-front, .card-back {
+            font-size: 18px;
+          }
+        }
+        @media (max-width: 400px) {
+          .flashcard {
+            width: 80px;
+            height: 120px;
+          }
+          .card-front, .card-back {
+            font-size: 16px;
+          }
+        }
+        @media (max-width: 300px) {
+          .flashcard {
+            width: 60px;
+            height: 100px;
+          }
+          .card-front, .card-back {
+            font-size: 14px;
+          }
+        }
+        @media (max-width: 200px) {
+          .flashcard {
+            width: 40px;
+            height: 80px;
+          }
+          .card-front, .card-back {
+            font-size: 12px;
+          }
+        }
+        @media (max-width: 100px) {
+          .flashcard {
+            width: 20px;
+            height: 60px;
+          }
+          .card-front, .card-back {
+            font-size: 10px;
+          }
+        }
+        @media (max-width: 50px) {
+          .flashcard {
+            width: 10px;
+            height: 40px;
+          }
+          .card-front, .card-back {
+            font-size: 8px;
+          }
+        }
+        @media (max-width: 25px) {
+          .flashcard {
+            width: 5px;
+            height: 20px;
+          }
+          .card-front, .card-back {
+            font-size: 6px;
+          }
+        }
+        @media (max-width: 10px) {
+          .flashcard {
+            width: 2px;
+            height: 10px;
+          }
+          .card-front, .card-back {
+            font-size: 4px;
+          }
+        }
+        @media (max-width: 5px) {
+          .flashcard {
+            width: 1px;
+            height: 5px;
+          }
+          .card-front, .card-back {
+            font-size: 2px;
+          }
+        }
+        @media (max-width: 2px) {
+          .flashcard {
+            width: 0.5px;
+            height: 2px;
+          }
+          .card-front, .card-back {
+            font-size: 1px;
+          }
+        }
+        @media (max-width: 1px) {
+          .flashcard {
+            width: 0.2px;
+            height: 1px;
+          }
+          .card-front, .card-back {
+            font-size: 0.5px;
+          }
+        }
+        @media (max-width: 0.5px) {
+          .flashcard {
+            width: 0.1px;
+            height: 0.5px;
+          }
+          .card-front, .card-back {
+            font-size: 0.2px;
+          }
+        }
+        @media (max-width: 0.2px) {
+          .flashcard {
+            width: 0.05px;
+            height: 0.2px;
+          }
+          .card-front, .card-back {
+            font-size: 0.1px;
+          }
+        }
+        @media (max-width: 0.1px) {
+          .flashcard {
+            width: 0.01px;
+            height: 0.1px;
+          }
+          .card-front, .card-back {
+            font-size: 0.05px;
+          }
+        }
+        @media (max-width: 0.05px) {
+          .flashcard {
+            width: 0.005px;
+            height: 0.05px;
+          }
+          .card-front, .card-back {
+            font-size: 0.005px;
+          }
+        }
+        @media (max-width: 0.01px) {
+          .flashcard {
+            width: 0.001px;
+            height: 0.01px;
+          }
+          .card-front, .card-back {
+            font-size: 0.001px;
+          }
+        }
+        @media (max-width: 0.005px) {
+          .flashcard {
+            width: 0.0005px;
+            height: 0.005px;
+          }
+          .card-front, .card-back {
+            font-size: 0.0005px;
+          }
+        }
+        @media (max-width: 0.001px) {
+          .flashcard {
+            width: 0.0001px;
+            height: 0.001px;
+          }
+          .card-front, .card-back {
+            font-size: 0.0001px;
+          }
+        }
+      </style>
+      </head>
+      </html>
+      

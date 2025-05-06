@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darija Beats</title>
+  <link rel="icon" type="image/png" href="darija beat.png">
+  <a href="index.html">
+    <img src="darija beat.png" alt="Darija 4U Logo" class="main-logo" style="width: 200px; max-width: 90%;">  
+    </a>
+    <section id="exercises">
+        <h2>🧩 Exercises</h2>
+        <div class="quiz">
+          <p><strong>What does "Sbah lkhir" mean?</strong></p>
+          <button onclick="checkAnswer(this, true)">Good morning</button>
+          <button onclick="checkAnswer(this, false)">Good night</button>
+          <button onclick="checkAnswer(this, false)">Hello</button>
+          <p id="result1"></p>
+        </div>
+    <div class="quiz">
+      <p><strong>what does "labass alik" mean?</strong></p>
+          <button onclick="checkAnswer(this, false)">I am fine</button>
+          <button onclick="checkAnswer(this, true)">How are you?</button>
+          <button onclick="checkAnswer(this, false)">Goodbye</button>
+          <p id="result2"></p>
+    </div>
+        <div class="quiz">
+          <p><strong>How do you say "Three" in Darija?</strong></p>
+          <button onclick="checkAnswer(this, false)">Jouj</button>
+          <button onclick="checkAnswer(this, true)">Tlata</button>
+          <button onclick="checkAnswer(this, false)">Kahmsa</button>
+          <p id="result2"></p>
+        </div>
+        <div class="quiz">
+          <p><strong>How do you say "good evening"</strong></p>
+          <button onclick="checkAnswer(this, false)">Sbah lkheir</button>
+          <button onclick="checkAnswer(this, true)">Msa lkhir</button>
+          <button onclick="checkAnswer(this, false)">Labas 3lik</button>
+          <p id="result3"></p>
+        </div>
+        <div class="quiz">
+          <p><strong>What does "kouzina" mean?</strong></p>
+          <button onclick="checkAnswer(this, true)">Kitchen</button>
+          <button onclick="checkAnswer(this, false)">Bathroom</button>
+          <button onclick="checkAnswer(this, false)">Bedroom</button>
+          <p id="result4"></p>
+        </div>
+        <div class="quiz">
+          <p><strong>If we want to say qrib</strong></p>
+          <button onclick="checkAnswer(this, false)">Far</button>
+          <button onclick="checkAnswer(this, true)">Near</button>
+          <button onclick="checkAnswer(this, false)">Far away</button>
+          <p id="result5"></p>
+        </div>
+        <div class="quiz">
+          <p><strong>What is number eight in those numbers?</strong></p>
+          <button onclick="checkAnswer(this, false)">Sbaa</button>
+          <button onclick="checkAnswer(this, true)">Tmnya</button>
+          <button onclick="checkAnswer(this, false)">Khamsa</button>
+          <p id="result6"></p>
+        </div>
+        <div class="quiz">
+          <p><strong>What is number eleven in those numbers?</strong></p>
+          <button onclick="checkAnswer(this, false)">Tnash</button>
+          <button onclick="checkAnswer(this, true)">Hdach</button>
+          <button onclick="checkAnswer(this, false)">rabaa</button>
+          <p id="result7"></p>
+        </div>
+        <div class="quiz">
+          <p><strong>Fill in the Blank with the right word</strong></p>
+          <p>Shno smiytk? = What is your ______?</p>
+          <button onclick="checkAnswer(this, false)">age</button>
+          <button onclick="checkAnswer(this, true)">name</button>
+          <button onclick="checkAnswer(this, false)">address</button>
+          <p id="result8"></p>
+        </div>
+        <div class="quiz">
+    <p><strong>fill in the blank with the right word</strong></p>
+          <p>fin kayn nta? = where are _____?</p>
+          <button onclick="checkAnswer(this, true)">you</button>
+          <button onclick="checkAnswer(this, false)">we</button>
+          <button onclick="checkAnswer(this, false)">they</button>
+          <p id="result9"></p>
+        </div>    
+        <div class="quiz">
+          <p><strong>What does "Chokran" mean?</strong></p>
+          <button onclick="checkAnswer(this, true)">Thank you</button>
+          <button onclick="checkAnswer(this, false)">Please</button>
+          <button onclick="checkAnswer(this, false)">Goodbye</button>
+          <p id="result10"></p>
+        </div>
+        <div class="quiz">
+          <p><strong>How do you say "Goodbye" in Darija?</strong></p>
+          <button onclick="checkAnswer(this, false)">Sbah lkhir</button>
+          <button onclick="checkAnswer(this, true)">Bslama</button>
+          <button onclick="checkAnswer(this, false)">Labas 3lik</button>
+          <p id="result11"></p>
+        </div>
+        <div class="quiz">
+          <p><strong>How do you say "I love you" in Darija?</strong></p>
+          <button onclick="checkAnswer(this, false)">Ana bikhir</button>
+          <button onclick="checkAnswer(this, true)">Ana kanbghik</button>
+          <button onclick="checkAnswer(this, false)">Ana mzyan</button>
+          <p id="result12"></p>
+        </div>
+      </section>
+      <style>
+        body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fefae0;
+      color: #333;
+    }
+    header {
+      background-color: #d4a373;
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+    nav {
+      background-color: #faedcd;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #bc6c25;
+    }
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .lesson, .quiz {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin: 20px auto;
+      max-width: 600px;
+      padding: 20px;
+      text-align: left;
+    }
+    .quiz button {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      border: none;
+      background-color: #e9edc9;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .quiz button:hover {
+      background-color: #ccd5ae;
+    }
+    form input, form textarea, form button {
+      width: 90%;
+      margin: 10px auto;
+      padding: 10px;
+      display: block;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #ccd5ae;
+      text-align: center;
+    }
+    .main-logo {
+  width: 200px;
+  max-width: 90%;
+  display: block;
+  margin: 20px auto;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border-radius: 24px;
+}
+.main-logo:hover {
+  transform: scale(1.05);
+}
+      </style>
+      <script>
+         function checkAnswer(button, correct) {
+      const parent = button.parentElement;
+      const result = parent.querySelector("p[id^='result']");
+      if (correct) {
+        result.textContent = "✅ right! SAAHAAA!";
+        result.style.color = "green";
+      } else {
+        result.textContent = "❌ Oops! Try again.";
+        result.style.color = "red";
+      }
+    } 
+    function showAnswer(button, answer) {
+      const parent = button.parentElement;
+      const result = parent.querySelector("p[id^='result']");
+      result.textContent = answer;
+      result.style.color = "blue";
+    }
+    function showAnswer(button, answer) {
+      const parent = button.parentElement;
+      const result = parent.querySelector("p[id^='result']");
+      result.textContent = answer;
+      result.style.color = "blue";
+    }
+      </script>
+      </head>
+      </html>

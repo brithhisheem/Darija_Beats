@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Darija Beats</title>
+  <link rel="icon" type="image/png" href="darija beat.png">
+  <a href="#home.html">
+    <img src="darija beat.png" alt="Darija 4U Logo" class="main-logo" style="width: 200px; max-width: 90%;">  
+
+  </a>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fefae0;
+      color: #333;
+    }
+    header {
+      background-color: #d4a373;
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+    nav {
+      background-color: #faedcd;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      padding: 10px 0;
+    }
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    nav a:hover {
+      color: #bc6c25;
+    }
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+    .lesson, .quiz {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin: 20px auto;
+      max-width: 600px;
+      padding: 20px;
+      text-align: left;
+    }
+    .quiz button {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      border: none;
+      background-color: #e9edc9;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+    .quiz button:hover {
+      background-color: #ccd5ae;
+    }
+    form input, form textarea, form button {
+      width: 90%;
+      margin: 10px auto;
+      padding: 10px;
+      display: block;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      background-color: #ccd5ae;
+      text-align: center;
+    }
+    .main-logo {
+  width: 200px;
+  max-width: 90%;
+  display: block;
+  margin: 20px auto;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border-radius: 24px;
+}
+.main-logo:hover {
+  transform: scale(1.05);
+}
+    @media (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      section {
+        padding: 20px 10px;
+      }
+      .lesson, .quiz {
+        padding: 15px;
+      }
+    }
+    @media (max-width: 400px) {
+      header h1 {
+        font-size: 24px;
+      }
+    }
+    @media (max-width: 300px) {
+      header h1 {
+        font-size: 20px;
+      }
+      nav a {
+        font-size: 14px;
+      }
+    }
+    @media (max-width: 200px) {
+      header h1 {
+        font-size: 16px;
+      }
+      nav a {
+        font-size: 12px;
+      }
+    }
+    @media (max-width: 100px) {
+      header h1 {
+        font-size: 12px;
+      }
+      nav a {
+        font-size: 10px;
+      }
+    }
+    @media (max-width: 50px) {
+      header h1 {
+        font-size: 8px;
+      }
+      nav a {
+        font-size: 6px;
+      }
+    }
+    @media (max-width: 25px) {
+      header h1 {
+        font-size: 4px;
+      }
+      nav a {
+        font-size: 2px;
+      }
+    }
+    @media (max-width: 10px) {
+      header h1 {
+        font-size: 2px;
+      }
+      nav a {
+        font-size: 1px;
+      }
+    }
+    @media (max-width: 5px) {
+      header h1 {
+        font-size: 1px;
+      }
+      nav a {
+        font-size: 0.5px;
+      }
+    }
+    @media (max-width: 2px) {
+      header h1 {
+        font-size: 0.5px;
+      }
+      nav a {
+        font-size: 0.2px;
+      }
+    }
+    @media (max-width: 1px) {
+      header h1 {
+        font-size: 0.2px;
+      }
+      nav a {
+        font-size: 0.1px;
+      }
+    }
+    @media (max-width: 0.5px) {
+      header h1 {
+        font-size: 0.1px;
+      }
+      nav a {
+        font-size: 0.05px;
+      }
+    }
+    @media (max-width: 0.1px) {
+      header h1 {
+        font-size: 0.05px;
+      }
+      nav a {
+        font-size: 0.02px;
+      }
+    }
+    @media (max-width: 0.01px) {
+      header h1 {
+        font-size: 0.02px;
+      }
+      nav a {
+        font-size: 0.01px;
+      }
+    }
+    @media (max-width: 0.001px) {
+      header h1 {
+        font-size: 0.01px;
+      }
+      nav a {
+        font-size: 0.005px;
+      }
+    }
+    @media (max-width: 0.0001px) {
+      header h1 {
+        font-size: 0.005px;
+      }
+      nav a {
+        font-size: 0.002px;
+      }
+    }
+    @media (max-width: 0.00001px) {
+      header h1 {
+        font-size: 0.002px;
+      }
+      nav a {
+        font-size: 0.001px;
+      }
+    }
+    @media (max-width: 0.000001px) {
+      header h1 {
+        font-size: 0.001px;
+      }
+      nav a {
+        font-size: 0.0005px;
+      }
+    }
+    @media (max-width: 0.0000001px) {
+      header h1 {
+        font-size: 0.0005px;
+      }
+      nav a {
+        font-size: 0.0002px;
+      }
+    }
+    @media (max-width: 0.00000001px) {
+      header h1 {
+        font-size: 0.0002px;
+      }
+      nav a {
+        font-size: 0.0001px;
+      }
+    }
+    @media (max-width: 0.000000001px) {
+      header h1 {
+        font-size: 0.0001px;
+      }
+      nav a {
+        font-size: 0.00005px;
+      }
+    }
+    @media (max-width: 0.0000000001px) {
+      header h1 {
+        font-size: 0.00005px;
+      }
+      nav a {
+        font-size: 0.00002px;
+      }
+    }
+    @media (max-width: 0.00000000001px) {
+      header h1 {
+        font-size: 0.00002px;
+      }
+      nav a {
+        font-size: 0.00001px;
+      }
+    }
+    @media (max-width: 0.000000000001px) {
+      header h1 {
+        font-size: 0.00001px;
+      }
+      nav a {
+        font-size: 0.000005px;
+      }
+    }
+    @media (max-width: 0.0000000000001px) {
+      header h1 {
+        font-size: 0.000005px;
+      }
+      nav a {
+        font-size: 0.000002px;
+      }
+    }
+    @media (max-width: 0.00000000000001px) {
+      header h1 {
+        font-size: 0.000002px;
+      }
+      nav a {
+        font-size: 0.000001px;
+      }
+    }
+    @media (max-width: 0.000000000000001px) {
+      header h1 {
+        font-size: 0.000001px;
+      }
+      nav a {
+        font-size: 0.0000005px;
+      }
+    }
+    @media (max-width: 0.0000000000000001px) {
+      header h1 {
+        font-size: 0.0000005px;
+      }
+      nav a {
+        font-size: 0.0000002px;
+      }
+    }
+    @media (max-width: 0.00000000000000001px) {
+      header h1 {
+        font-size: 0.0000002px;
+      }
+      nav a {
+        font-size: 0.0000001px;
+      }
+    }
+    @media (max-width: 0.000000000000000001px) {
+      header h1 {
+        font-size: 0.0000001px;
+      }
+      nav a {
+        font-size: 0.00000005px;
+      }
+    }
+    @media (max-width: 0.0000000000000000001px) {
+      header h1 {
+        font-size: 0.00000005px;
+      }
+      nav a {
+        font-size: 0.00000002px;
+      }
+    }
+    @media (max-width: 0.00000000000000000001px) {
+      header h1 {
+        font-size: 0.00000002px;
+      }
+      nav a {
+        font-size: 0.00000001px;
+      }
+    }
+    @media (max-width: 0.000000000000000000001px) {
+      header h1 {
+        font-size: 0.00000001px;
+      }
+      nav a {
+        font-size: 0.000000005px;
+      }
+    }
+    @media (max-width: 0.0000000000000000000001px) {
+      header h1 {
+        font-size: 0.000000005px;
+      }
+      nav a {
+        font-size: 0.000000002px;
+      }
+    }
+    @media (max-width: 0.00000000000000000000001px) {
+      header h1 {
+        font-size: 0.000000002px;
+      }
+      nav a {
+        font-size: 0.000000001px;
+      }
+    }
+    @media (max-width: 0.000000000000000000000001px) {
+      header h1 {
+        font-size: 0.000000001px;
+      }
+      nav a {
+        font-size: 0.0000000005px;
+      }
+    }
+    @media (max-width: 0.0000000000000000000000001px) {
+      header h1 {
+        font-size: 0.0000000005px;
+      }
+      nav a {
+        font-size: 0.0000000002px;
+      }
+    }
+    @media (max-width: 0.00000000000000000000000001px) {
+      header h1 {
+        font-size: 0.0000000002px;
+      }
+      nav a {
+        font-size: 0.0000000001px;
+      }
+    }
+   
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Learn Moroccan Darija 🇲🇦</h1>
+    <p>Learn Darija in a fun and easy way!</p>
+  </header>
+
+  <nav>
+    <a href="#home">🏠 Home</a>
+    <a href="lessons.html">📘 Lessons</a>
+    <a href="exercises.html">🎮 Exercises</a>
+    <a href="flashcards.html">🃏 Flashcards</a>
+    <a href="live lessons.html">💻 Live Lessons</a>
+    <a href="contact.html">📩 Contact</a>
+    <a href="about us.html">👤 About Us</a>
+    <a href="social.html">📱 Social Media</a>
+   
+  </nav>
+
+  <section id="home">
+    <h2>Welcome! / مرحبا!</h2>
+    <p>This site helps you learn Moroccan Arabic (Darija) with lessons, exercises, and pronunciation practice!</p>
+    <p>Darija is the Moroccan dialect of Arabic, and it is widely spoken in Morocco. It is a mix of Arabic, Amazigh, French, and Spanish influences.</p>
+    <p>Learning Darija will help you communicate with locals, understand the culture, and enjoy your time in Morocco!</p>
+    <p>Whether you're a beginner or looking to improve your skills, this site has something for everyone!</p>
+    <p>Feel free to explore the lessons, practice with exercises, and reach out if you have any questions!</p>
+    <p>New lessons and exercises will be added regularly, so stay tuned!</p>
+    <p>Happy learning! / نتمنى لك التعلم السعيد!</p>
+  </section>
+  <footer>
+    <p>&copy; 2025 Darija Beats, Made with love from Morocco.</p>
+  </footer>
+</body>
+</html>
+
