@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darija Beats — Everyday Word</title>
+<link rel="icon" type="image/png" href="darija beat.png">
+
+<style>
+:root {
+  --brand: #ccd5ae;
+  --brand-dark: #fed4a3;
+  --bg: #fefae0;
+  --card: #ffffff;
+  --radius: 14px;
+  --text-color: #333;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Navbar */
+nav {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+nav a {
+  color: var(--brand-dark);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding: 4px 0;
+  transition: all 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--brand-dark);
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+nav a:hover::after { width: 100%; }
+
+/* Logo */
+header {
+  text-align: center;
+  margin: 60px 0 40px 0;
+}
+
+.main-logo {
+  width: 180px;
+  max-width: 90%;
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.main-logo:hover { transform: scale(1.05); }
+
+/* Word Section */
+.word-section {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.note {
+  font-size: 20px;
+  margin-bottom: 30px;
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: fadeDown 1s forwards;
+}
+
+.word-card {
+  background: var(--card);
+  padding: 28px 40px;
+  border-radius: var(--radius);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  text-align: center;
+  opacity: 0;
+  animation: fadeInScale 1s forwards 0.5s;
+}
+
+.word-card h2 {
+  color: var(--brand-dark);
+  font-size: 36px;
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateX(-50px);
+  animation: slideFromLeft 0.6s forwards 1s;
+}
+
+.word-card h3 {
+  font-size: 24px;
+  color: #555;
+  margin-bottom: 15px;
+  opacity: 0;
+  transform: translateX(50px);
+  animation: slideFromRight 0.6s forwards 1.3s;
+}
+
+.word-card p {
+  font-size: 18px;
+  line-height: 1.6;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s forwards 1.6s;
+}
+
+/* Animations */
+@keyframes fadeDown {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInScale {
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slideFromLeft {
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideFromRight {
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* Footer */
+footer {
+  margin-top: 40px;
+  padding: 20px;
+  text-align: center;
+  background: var(--brand);
+  border-radius: var(--radius);
+}
+
+@media(max-width: 768px){
+  nav { flex-direction: row; top: 10px; right: 10px; }
+  nav a { font-size: 14px; }
+  .word-card { padding: 20px 25px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">
+    <img src="darija beat.png" alt="Darija Beats Logo" class="main-logo">
+  </a>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="lessons.html">📘 Lessons</a>
+  <a href="exercises.html">🎮 Exercises</a>
+  <a href="Daily Beats.html">🔁 Daily Beats</a>
+  <a href="Online lessons.html">💻 Online Lessons</a>
+  <a href="contact.html">📩 Contact</a>
+  <a href="about us.html">👤 About Us</a>
+  <a href="social.html">📱 Social Media</a>
+</nav>
+
+<section class="word-section">
+  <div class="note">
+    Every day, discover a new Moroccan Darija word with its meaning and usage!
+  </div>
+
+  <div class="word-card">
+    <h2 id="darija-word">Salam</h2>
+    <h3 id="english-word">Hello / مرحبا</h3>
+    <p id="usage">Usage: To greet someone casually. Example: "Salam, kif dayr?"</p>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 Darija Beats, Made with love from Morocco.</p>
+</footer>
+
+<script>
+const words = [
+  {darija: 'Salam', english: 'Hello / مرحبا', usage: 'Usage: To greet someone casually. Example: "Salam, kif dayr?"'},
+  {darija: 'Shukran', english: 'Thank you / شكرا', usage: 'Usage: To thank someone. Example: "Shukran 3la l-musa3ada!"'},
+  {darija: 'Bslama', english: 'Goodbye / بسلامة', usage: 'Usage: When leaving. Example: "Bslama, nchofk ghdda!"'},
+  {darija: 'Mzian', english: 'Good / جيد', usage: 'Usage: To say something is good. Example: "Had l-maakla mzian."'},
+  {darija: 'Sm7 li', english: 'Excuse me / سمح لي', usage: 'Usage: To apologize or get attention. Example: "Sm7 li, fin l-mataar?"'}
+];
+
+function getWordOfDay(){
+  const startDate = new Date('2025-01-01');
+  const today = new Date();
+  const diffDays = Math.floor((today - startDate)/(1000*60*60*24));
+  const index = diffDays % words.length;
+  return words[index];
+}
+
+window.addEventListener('load', () => {
+  const word = getWordOfDay();
+  document.getElementById('darija-word').textContent = word.darija;
+  document.getElementById('english-word').textContent = word.english;
+  document.getElementById('usage').textContent = word.usage;
+});
+</script>
+
+</body>
+</html>
