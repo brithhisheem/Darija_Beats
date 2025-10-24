@@ -1,191 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Darija Beats - Online Lessons</title>
-  <link rel="icon" type="image/png" href="darija beat.png">
-  <a href="index.html">
-    <img src="darija beat.png" alt="Darija 4U Logo" class="main-logo" style="width: 200px; max-width: 90%;">  
-  </a>
-<style>
-   .main-logo {
-  width: 200px;
-  max-width: 90%;
-  display: block;
-  margin: 20px auto;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  border-radius: 24px;
-}
-.main-logo:hover {
-  transform: scale(1.05);
-}
-    form input, form textarea, form button {
-      width: 90%;
-      margin: 10px auto;
-      padding: 10px;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Darija Beats — Online Lessons</title>
+  <style>
+    .main-logo {
+      width: 200px;
+      max-width: 90%;
       display: block;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      margin: 20px auto;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+      border-radius: 24px;
     }
-  body {
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #fdf6e3; /* Darija Beats beige background */
-    margin: 0;
-    padding: 0;
-    color: #333;
-  }
+    .main-logo:hover {
+      transform: scale(1.05);
+    }
 
-  .pricing-section {
-    padding: 50px 20px;
-    text-align: center;
-  }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fdf6e3;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
 
-  .pricing-section h2 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
-    color: #d35400; /* Darija Beats primary accent */
-  }
+    :root{
+      --brand: #fed4a3;
+      --brand-hover: #ffd6a0;
+      --brand-dark: #fed4a3;
+      --muted: #555555;
+      --bg: #fefae0;
+      --card: #ffffff;
+      --radius: 14px;
+    }
 
-  .intro-text {
-    font-size: 1.2rem;
-    margin-bottom: 40px;
-    color: #555;
-  }
+    *{box-sizing:border-box}
+    .container{max-width:1100px;margin:28px auto;padding:0 20px}
 
-  .pricing-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-  }
+    header{text-align:center;padding:20px 0}
 
-  .card {
-    background-color: #fff;
-    border-radius: 18px;
-    padding: 25px;
-    width: 280px;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-  }
+    .hero {
+      background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.6)),url('hero-placeholder.jpg') center/cover no-repeat;
+      border-radius:var(--radius);
+      padding:34px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:28px;
+      overflow:hidden;
+      background-attachment: fixed; /* Parallax effect */
+      background-size: cover;
+    }
 
-  .card:hover {
-    transform: scale(1.07);
-    box-shadow: 0 12px 28px rgba(0,0,0,0.2);
-  }
+    .hero-left{
+      flex:1;
+      text-align:center;
+      opacity:0;
+      transform:translateY(20px);
+      transition: transform 0.6s ease, opacity 0.6s ease, box-shadow 0.3s ease;
+    }
+    .hero-left.show{opacity:1;transform:translateY(0);}
+    .hero-left:hover{box-shadow:0 6px 20px rgba(204, 213, 174, 0.3);border-radius:12px;}
+    .hero h2{margin:0;font-size:28px;color:var(--brand-dark);transition: text-shadow 0.3s ease;}
+    .hero-left:hover h2{text-shadow: 0 2px 6px rgba(204, 213, 174, 0.4);}
+    .hero p{margin:8px 0 18px;color:var(--muted);transition: text-shadow 0.3s ease;}
+    .hero-left:hover p{text-shadow: 0 1px 4px rgba(204, 213, 174, 0.3);}
 
-  .card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-    color: #d35400; /* Accent for titles */
-  }
+    .btn{
+      background: var(--brand);
+      color: white;
+      padding: 12px 18px;
+      border-radius: 10px;
+      border: none;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(204, 213, 174, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+    .btn:hover::after {
+      width: 200%;
+      height: 500%;
+    }
+    .btn:active {
+      transform: scale(0.95);
+    }
 
-  .price {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #fed4a3; /* Accent for price */
-  }
+    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+    .card{
+      background:var(--card);
+      padding:18px;
+      border-radius:12px;
+      box-shadow:0 8px 22px rgba(12,12,12,0.05);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      opacity:0;
+      transform:translateY(30px);
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
+    .card.show{
+      opacity:1;
+      transform:translateY(0);
+    }
+    .card:hover{
+      transform: translateY(-8px) scale(1.05);
+      box-shadow:0 12px 30px rgba(0,0,0,0.15);
+    }
+    .card h3{margin:0;color:var(--brand-dark)}
+    .features{list-style:none;padding:0;margin:0;color:var(--muted);font-size:14px}
+    .price-big{font-size:22px;font-weight:800}
+    .small-muted{font-size:13px;color:var(--muted)}
 
-  .card ul {
-    list-style: none;
-    padding: 0;
-    font-size: 1rem;
-    color: #444;
-  }
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
+    .panel{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(12,12,12,0.04)}
 
-  .card ul li {
-    margin-bottom: 10px;
-  }
+    footer{margin:34px 0 80px;padding-top:20px;border-top:1px solid rgba(0,0,0,0.04);text-align:center;color:var(--muted);font-size:13px}
 
-  .note {
-    margin-top: 30px;
-    font-size: 0.95rem;
-    color: #777;
-  }
-
-  footer {
-    background-color: #333;
-    color: #fefae0;
-    text-align: center;
-    padding: 15px;
-    margin-top: 50px;
-  }
-
-</style>
+    @media (max-width:900px){.plans{grid-template-columns:repeat(2,1fr)}.hero{flex-direction:column}.hero-right{width:100%}.grid-2{grid-template-columns:1fr}}
+    @media (max-width:600px){.plans{grid-template-columns:1fr}.hero h2{font-size:22px}}
+  </style>
 </head>
-
-<section class="pricing-section">
-  <h2>🎵 Darija Beats Online Lessons</h2>
-  <p class="intro-text">Choose your learning pack and start speaking Moroccan Darija today!</p>
-
-  <div class="pricing-cards">
-    <!-- Group session -->
-    <div class="card">
-      <h3>Group session</h3>
-      <p class="price">40 mad</p>
-      <ul>
-        <li>Affordable and social, perfect for starting your Darija journey.</li>
-        <li>Practice with other students to improve confidence in speaking.</li>
-        <li>Pronunciation Tips.</li>
-      </ul>
-      <a href="YOUR_PAYPAL_LINK_GROUP" target="_blank">
-        <button class="card-button">Pay Now</button>
+<body>
+  <div class="container">
+    <header>
+      <a href="index.html">
+        <img src="darija beat.png" alt="Darija Beats Logo" class="main-logo">
       </a>
-    </div>
+    </header>
 
-    <!-- Full private session -->
-    <div class="card">
-      <h3>Full private session</h3>
-      <p class="price">80 mad</p>
-      <ul>
-        <li>One-on-one personalized Darija lesson.</li>
-        <li>Focus on your individual goals and pace.</li>
-        <li>Perfect for beginners or anyone wanting extra practice.</li>
-      </ul>
-      <a href="YOUR_PAYPAL_LINK_PRIVATE" target="_blank">
-        <button class="card-button">Pay Now</button>
-      </a>
-    </div>
+    <section class="hero">
+      <div class="hero-left" id="hero-left">
+        <div class="badge">Online Lessons • Native tutors</div>
+        <h2>Step into Moroccan Darija with friendly, practical lessons</h2>
+        <p>Practical conversation practice, pronunciation drills and downloadable PDFs — perfect for travelers, expats and language lovers.</p>
+      </div>
+    </section>
 
-    <!-- 5 Private sessions -->
-    <div class="card">
-      <h3>5 Private sessions</h3>
-      <p class="price">200 mad</p>
-      <ul>
-        <li>A mix of lessons, exercises, and live sessions.</li>
-        <li>Focus on real-life situations: greetings, shopping, directions, and more.</li>
-        <li>Designed for beginners to speak confidently.</li>
-      </ul>
-      <a href="YOUR_PAYPAL_LINK_5SESSIONS" target="_blank">
-        <button class="card-button">Pay Now</button>
-      </a>
-    </div>
+    <section id="plans">
+      <h2 style="text-align:center;">Choose your plan</h2>
+      <div class="plans" id="plans">
+        <article class="card">
+          <h3>Private Lesson</h3>
+          <div class="price-big">50 MAD / session</div>
+          <p class="small-muted">60 minutes — Personalized tutoring</p>
+          <ul class="features">
+            <li>★ One teacher, full attention</li>
+            <li>★ Personalized lesson plan</li>
+            <li>★ PDFs + practice sheets</li>
+          </ul>
+          <a class="btn" href="YOUR_PAYPAL_LINK_GROUP" target="_blank">Book Now</a>
+        </article>
+
+        <article class="card">
+          <h3>Group Session</h3>
+          <div class="price-big">40 MAD / session</div>
+          <p class="small-muted">60 minutes — Max 6 students</p>
+          <ul class="features">
+            <li>★ Conversation practice</li>
+            <li>★ Role-play & live correction</li>
+            <li>★ PDF summaries after class</li>
+          </ul>
+          <a class="btn" href="YOUR_PAYPAL_LINK_GROUP" target="_blank">Book Now</a>
+        </article>
+
+        <article class="card">
+          <h3>5 Private Sessions Pack</h3>
+          <div class="price-big">200 MAD / pack</div>
+          <p class="small-muted">5 sessions — Book anytime</p>
+          <ul class="features">
+            <li>★ Best for steady progress</li>
+            <li>★ Priority scheduling</li>
+            <li>★ Progress report</li>
+          </ul>
+          <a class="btn" href="YOUR_PAYPAL_LINK_GROUP" target="_blank">Buy pack</a>
+        </article>
+      </div>
+    </section>
+     <!-- Secure Payment Section with Hero-style Animation -->
+    <section class="secure-payment hero-left" id="secure-payment">
+      <h3>Secure & Safe Payments</h3>
+      <p>All payments are processed securely via PayPal.</p>
+      <p>Your information is never shared, and transactions are fully protected.</p>
+      <p>Easy, fast, and safe — get your lessons instantly after payment!</p>
+    </section>
+
+    <footer>© 2025 Darija Beats. All rights reserved.</footer>
   </div>
 
-  <p class="note">*All materials are online, including PDFs and practice sheets in Google Sheets.</p>
-</section>
+  <script>
+    window.addEventListener('load', () => {
+      // Hero fade in
+      document.getElementById('hero-left').classList.add('show');
 
-<style>
-/* Payment buttons styled to match your cards and site */
-.card-button {
-  background-color: #d35400; /* Matches your card title accent color */
-  color: #fdf6e3; /* Matches your background/light text color */
-  border: none;
-  border-radius: 18px; /* Matches your card border radius */
-  padding: 12px 25px;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 15px;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
+      // Animate cards with stagger
+      const cards = document.querySelectorAll('.card');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('show');
+        }, 200 * index);
+      });
+    });
+     window.addEventListener('load', () => {
+      // Hero fade in
+      document.getElementById('hero-left').classList.add('show');
 
-.card-button:hover {
-  background-color: #e67e22; /* Slightly lighter accent on hover */
-  transform: scale(1.05);
-}
-</style>
+      // Animate cards with stagger
+      const cards = document.querySelectorAll('.card');
+      cards.forEach((card, index) => {
+        setTimeout(() => {
+          card.classList.add('show');
+        }, 200 * index);
+      });
+
+      // Animate secure payment section like hero text
+      setTimeout(() => {
+        document.getElementById('secure-payment').classList.add('show');
+      }, 800);
+    });
+  </script>
+</body>
+</html>
+
+
 
