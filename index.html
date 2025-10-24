@@ -15,9 +15,17 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text-color); display: flex; min-height: 100vh; }
+    body { 
+      font-family: 'Segoe UI', sans-serif; 
+      background: var(--bg); 
+      color: var(--text-color); 
+      display: flex; 
+      flex-direction: column; 
+      min-height: 100vh; 
+      line-height: 1.6;
+    }
 
-    /* Sidebar */
+    /* Navbar */
     nav {
       position: fixed;
       right: 0;
@@ -38,7 +46,7 @@
       text-decoration: none;
       font-weight: 600;
       position: relative;
-      padding: 4px 0;
+      padding: 10px 5px;
       transition: color 0.3s ease;
     }
 
@@ -83,21 +91,20 @@
       margin-right: 180px; /* space for sidebar */
     }
 
-    section h2, section h3, section p, section li {
+    section h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
       opacity: 0;
       transform: translateY(20px);
       transition: all 0.6s ease;
     }
 
-    section ul {
-      list-style: none;
-      padding-left: 0;
-    }
-
-    section li::before {
-      content: "• ";
-      color: var(--peach);
-      font-weight: bold;
+    section p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
     }
 
     footer {
@@ -122,60 +129,24 @@
 
       main { margin-right: 0; padding: 20px; }
     }
-
-    section h2, section h3 {
-  margin-bottom: 20px; /* spacing after headings */
-}
-
-section p {
-  margin-bottom: 20px; /* spacing after paragraphs */
-  line-height: 1.8;    /* make text more readable */
-}
-
-section ul {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 20px; /* spacing after lists */
-}
-
-section li {
-  margin-bottom: 10px; /* spacing between list items */
-  line-height: 1.6;
-}
-
-
   </style>
 </head>
 <body>
+  <header>
+    <a href="index.html">
+      <img src="darija beat.png" alt="Darija Beats Logo" class="main-logo">
+    </a>
+  </header>
+
   <main>
-    <header>
-      <a href="index.html">
-        <img src="darija beat.png" alt="Darija Beats Logo" class="main-logo">
-      </a>
-    </header>
-
-    <section id="home" class="welcome-text">
+    <section id="home">
       <h2>Welcome! / مرحبا!</h2>
-
-      <h3>Why Learn Darija? / علاش تتعلم الدارجة؟</h3>
-      <p>Darija is the Moroccan dialect of Arabic 🇲🇦. It’s spoken everywhere in Morocco and mixes <strong>Arabic, Amazigh, French, and Spanish</strong> influences.</p>
-      <p>Learning it will help you <strong>communicate with locals</strong>, understand the culture, and enjoy your travels!</p>
-
-      <h3>What You’ll Learn / شنو غادي تتعلم؟</h3>
-      <ul>
-        <li>📘 <strong>Lessons</strong> for beginners and beyond</li>
-        <li>🎮 <strong>Exercises</strong> to practice speaking & listening</li>
-        <li>🗣 <strong>Pronunciation drills</strong> to sound natural</li>
-        <li>📄 Downloadable <strong>PDFs</strong> for offline practice</li>
-      </ul>
-
-      <h3>How to Use This Site / كيفاش تستعمل الموقع؟</h3>
-      <p>Explore lessons, try exercises, and use flashcards to reinforce your learning.</p>
-      <p>Join <strong>online lessons</strong> to practice with native tutors in real-time!</p>
-
-      <h3>New & Fun! / جديد و ممتع!</h3>
-      <p>We add lessons and exercises regularly, so check back often. Learning Darija has never been this fun! 🎉</p>
-
+      <p>This site helps you learn Moroccan Arabic (Darija) with lessons, exercises, and pronunciation practice!</p>
+      <p>Darija is the Moroccan dialect of Arabic, and it is widely spoken in Morocco. It is a mix of Arabic, Amazigh, French, and Spanish influences.</p>
+      <p>Learning Darija will help you communicate with locals, understand the culture, and enjoy your time in Morocco!</p>
+      <p>Whether you're a beginner or looking to improve your skills, this site has something for everyone!</p>
+      <p>Feel free to explore the lessons, practice with exercises, and reach out if you have any questions!</p>
+      <p>New lessons and exercises will be added regularly, so stay tuned!</p>
       <p>Happy learning! / نتمنى لك التعلم السعيد!</p>
     </section>
 
@@ -197,44 +168,33 @@ section li {
 
   <script>
     window.addEventListener('load', () => {
-      const heading = document.querySelector('.welcome-text h2');
-      const subHeadings = document.querySelectorAll('.welcome-text h3');
-      const paragraphs = document.querySelectorAll('.welcome-text p, .welcome-text li');
+      // Animate heading
+      const heading = document.querySelector('section h2');
+      heading.style.opacity = '1';
+      heading.style.transform = 'translateY(0)';
 
-      // Animate main heading
-      setTimeout(() => {
-        heading.style.opacity = '1';
-        heading.style.transform = 'translateY(0)';
-      }, 300);
-
-      // Animate subheadings
-      subHeadings.forEach((h, i) => {
-        setTimeout(() => {
-          h.style.opacity = '1';
-          h.style.transform = 'translateY(0)';
-        }, 600 + i*200);
-      });
-
-      // Animate paragraphs & list items
+      // Animate paragraphs with stagger
+      const paragraphs = document.querySelectorAll('section p');
       paragraphs.forEach((p, i) => {
         setTimeout(() => {
           p.style.opacity = '1';
           p.style.transform = 'translateY(0)';
-        }, 1000 + i*150);
+        }, i * 150);
       });
 
       // Animate sidebar links
       const navLinks = document.querySelectorAll('nav a');
-      navLinks.forEach((link, i) => {
+      navLinks.forEach((link, index) => {
         link.style.opacity = '0';
         link.style.transform = 'translateX(30px)';
         setTimeout(() => {
           link.style.transition = 'all 0.5s ease';
           link.style.opacity = '1';
           link.style.transform = 'translateX(0)';
-        }, i*150);
+        }, index * 150);
       });
     });
   </script>
 </body>
 </html>
+
