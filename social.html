@@ -1,69 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Darija Beats</title>
-  <link rel="icon" type="image/png" href="darija beat.png">
-  <a href="index.html">
-    <img src="darija beat.png" alt="Darija 4U Logo" class="main-logo" style="width: 200px; max-width: 90%;">  
-  </a>
-  <section id="social">
-    <h2>Follow Us</h2>
-    <p>Stay connected with us on social media!</p>
-    <p>Follow us on Instagram for daily Darija tips and updates!</p>
-    <a href=https://www.instagram.com/darija.beats?igsh=NWtpMWptcXY0bWZ1 target="_blank">Instagram</a>
-  </section>
-    <style>
-        body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #fefae0;
-        color: #333;
-        }
-        header {
-        background-color: #d4a373;
-        padding: 20px;
-        color: white;
-        text-align: center;
-        }
-        nav {
-        background-color: #faedcd;
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        padding: 10px 0;
-        }
-        nav a {
-        text-decoration: none;
-        color: #333;
-        font-weight: bold;
-        }
-        nav a:hover {
-        color: #bc6c25;
-        }
-        section {
-        padding: 40px 20px;
-        text-align: center;
-        }
-        footer {
-        margin-top: 40px;
-        padding: 20px;
-        background-color: #ccd5ae;
-        }
-        .main-logo {
-  width: 200px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darija Beats — Social Media</title>
+<link rel="icon" type="image/png" href="darija beat.png">
+
+<style>
+:root {
+  --brand: #ccd5ae;
+  --brand-dark: #fed4a3;
+  --bg: #fefae0;
+  --text-color: #333;
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 0 40px;
+}
+
+/* Navbar */
+nav {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+nav a {
+  color: var(--brand-dark);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding: 4px 0;
+  transition: all 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--brand-dark);
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+nav a:hover::after { width: 100%; }
+
+/* Logo */
+header {
+  text-align: center;
+  width: 100%;
+  margin: 60px 0 40px 0;
+}
+
+.main-logo {
+  width: 180px;
   max-width: 90%;
   display: block;
-  margin: 20px auto;
+  margin: 0 auto;
   transition: transform 0.3s ease;
   cursor: pointer;
-  border-radius: 24px;
+  border-radius: 12px;
 }
-.main-logo:hover {
+
+.main-logo:hover { transform: scale(1.05); }
+
+/* Social Media Section */
+.social-section {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0;
+  width: 100%;
+}
+
+.social-card {
+  background: linear-gradient(270deg, #fed4a3, #ccd5ae, #fed4a3);
+  background-size: 600% 600%;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+  max-width: 600px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-card.animate {
+  animation: fadeSlide 1s forwards, gradientShift 8s ease infinite, floatUpDown 3s ease-in-out infinite;
+}
+
+.social-card:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.social-card h2 {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.social-card p {
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.btn-follow {
+  display: inline-block;
+  background-color: #fefae0;
+  color: #333;
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-follow:hover {
   transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+/* Animations */
+@keyframes fadeSlide {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatUpDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media(max-width:768px){
+  body { padding: 0 20px; }
+  nav { flex-direction: row; top:10px; right:10px; }
+  nav a { font-size:14px; }
+  .social-section { flex-direction: column; align-items:center; }
+  .social-card { padding:25px 20px; }
+  .social-card h2 { font-size:1.6rem; }
+  .social-card p { font-size:1rem; }
 }
 </style>
 </head>
+<body>
+
+<header>
+  <a href="index.html">
+    <img src="darija beat.png" alt="Darija Beats Logo" class="main-logo">
+  </a>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="lessons.html">📘 Lessons</a>
+  <a href="exercises.html">🎮 Exercises</a>
+  <a href="Daily Beats.html">🔁 Daily Beats</a>
+  <a href="Online lessons.html">💻 Online Lessons</a>
+  <a href="contact.html">📩 Contact</a>
+  <a href="about us.html">👤 About Us</a>
+  <a href="social.html">📱 Social Media</a>
+</nav>
+
+<section class="social-section">
+  <div class="social-card">
+    <h2>Follow Darija Beats on Instagram</h2>
+    <p>
+      Stay connected with us and get the latest lessons, exercises, and fun Darija tips! 
+      Join our community and enjoy learning Moroccan Arabic in a friendly and fun way.
+    </p>
+    <a href="https://www.instagram.com/darija.beats/" target="_blank" class="btn-follow">
+      Follow @DarijaBeats
+    </a>
+  </div>
+</section>
+
+<script>
+// Animate card on scroll safely
+const social = document.querySelector('.social-card');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('animate');
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.1});
+
+observer.observe(social);
+</script>
+
+</body>
 </html>
