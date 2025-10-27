@@ -1,88 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Darija Beats</title>
-  <link rel="icon" type="image/png" href="darija beat.png">
-  <a href="index.html">
-    <img src="darija beat.png" alt="Darija 4U Logo" class="main-logo" style="width: 200px; max-width: 90%;">  
-  </a>
-  <section id="contact">
-    <h2>📩 For More Contact Me</h2>
-    <form action="https://formspree.io/f/mqapnbgk" method="POST">
-      <input type="text" placeholder="Your Name" required>
-      <input type="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-      <button type="submit">Send</button>   
-    </form>
-  </section>
-  <style>
-     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fefae0;
-      color: #333;
-    }
-    header {
-      background-color: #d4a373;
-      padding: 20px;
-      color: white;
-      text-align: center;
-    }
-    nav {
-      background-color: #faedcd;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      padding: 10px 0;
-    }
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #bc6c25;
-    }
-    section {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      background-color: #ccd5ae;
-      text-align: center;
-    }
-    .main-logo {
-  width: 200px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darija Beats — Contact</title>
+<link rel="icon" type="image/png" href="darija beat.png">
+<style>
+:root {
+  --brand: #ccd5ae;
+  --brand-dark: #fed4a3;
+  --bg: #fefae0;
+  --text-color: #333;
+  --radius: 16px;
+}
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Navbar */
+nav {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 10;
+}
+nav a {
+  color: var(--brand-dark);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding: 4px 0;
+  transition: all 0.3s ease;
+}
+nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--brand-dark);
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  transition: width 0.3s;
+}
+nav a:hover::after { width: 100%; }
+
+/* Header Logo */
+header {
+  text-align: center;
+  margin: 80px 0 40px 0;
+}
+.main-logo {
+  width: 180px;
   max-width: 90%;
   display: block;
-  margin: 20px auto;
-  transition: transform 0.3s ease;
+  margin: 0 auto;
   cursor: pointer;
-  border-radius: 24px;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
 }
-.main-logo:hover {
+.main-logo:hover { transform: scale(1.05); }
+
+/* Contact Section */
+.contact-section {
+  position: relative;
+  max-width: 600px;
+  width: 90%;
+  margin: 60px auto 60px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1;
+  overflow: hidden;
+  padding: 40px 20px;
+  border-radius: var(--radius);
+}
+
+/* Animated Gradient Background */
+.contact-section::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(120deg, rgba(204,213,174,0.2), rgba(254,212,163,0.2), rgba(204,213,174,0.2));
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  z-index: 0;
+  border-radius: var(--radius);
+}
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Contact Blocks with Zoom */
+.contact-block {
+  position: relative;
+  z-index: 2;
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 30px 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.6s ease;
+}
+.contact-block.show {
+  opacity: 1;
+  transform: scale(1);
+}
+.contact-block h2 {
+  color: var(--brand-dark);
+  margin-bottom: 15px;
+}
+.contact-block p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Form Elements */
+.contact-block input,
+.contact-block textarea,
+.contact-block button {
+  width: 100%;
+  padding: 14px 12px;
+  border-radius: 8px;
+  border: 2px solid var(--brand);
+  outline: none;
+  font-size: 16px;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+.contact-block input:focus,
+.contact-block textarea:focus {
+  border-color: var(--brand-dark);
+  box-shadow: 0 0 8px var(--brand-dark);
+}
+.contact-block button {
+  background: linear-gradient(90deg, var(--brand), var(--brand-dark));
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.contact-block button:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 15px var(--brand-dark);
 }
-    form input, form textarea, form button {
-      width: 90%;
-      margin: 10px auto;
-      padding: 10px;
-      display: block;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-    }
-    form button {
-      background-color: #e9edc9;
-      cursor: pointer;
-    }
-    form button:hover {
-      background-color: #ccd5ae;
-    }
-  </style>
-  </head>
-  </html>
+
+/* Footer */
+footer {
+  padding: 20px;
+  text-align: center;
+  color: var(--text-color);
+  margin-top: 60px;
+}
+
+/* Responsive */
+@media(max-width:768px){
+  nav { flex-direction: row; top:10px; right:10px; }
+  nav a { font-size:14px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html">
+    <img src="darija beat.png" alt="Darija Beats Logo" class="main-logo">
+  </a>
+</header>
+
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="lessons.html">📘 Lessons</a>
+  <a href="exercises.html">🎮 Exercises</a>
+  <a href="Daily Beats.html">🔁 Daily Beats</a>
+  <a href="Online lessons.html">💻 Online Lessons</a>
+  <a href="about us.html">👤 About Us</a>
+  <a href="social.html">📱 Social Media</a>
+  <a href="contact.html">📩 Contact</a>
+</nav>
+
+<section class="contact-section">
+  <div class="contact-block" id="intro-block">
+    <p>We love hearing from you! Whether you have questions, suggestions, or just want to say hello — send us a message and our team will get back to you promptly.</p>
+  </div>
+
+  <div class="contact-block" id="name-block">
+    <h2>Your Name</h2>
+    <input type="text" name="name" placeholder="Your Name">
+  </div>
+
+  <div class="contact-block" id="email-block">
+    <h2>Your Email</h2>
+    <input type="email" name="_replyto" placeholder="Your Email">
+  </div>
+
+  <div class="contact-block" id="message-block">
+    <h2>Your Message</h2>
+    <textarea name="message" rows="5" placeholder="Your Message"></textarea>
+  </div>
+
+  <div class="contact-block" id="button-block">
+    <button type="submit">Send Message</button>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Darija Beats. All rights reserved.
+</footer>
+
+<script>
+  // Animate blocks with zoom-in stagger
+  window.addEventListener('load', () => {
+    const blocks = document.querySelectorAll('.contact-block');
+    blocks.forEach((block, index) => {
+      setTimeout(() => {
+        block.classList.add('show');
+      }, 200 * index);
+    });
+  });
+</script>
+
+</body>
+</html>
