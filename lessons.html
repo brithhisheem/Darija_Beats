@@ -1,388 +1,221 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Darija Beats</title>
-  <link rel="icon" type="image/png" href="darija beat.png">
-  <a href="index.html">
-    <img src="darija beat.png" alt="Darija 4U Logo" class="main-logo" style="width: 200px; max-width: 90%;">  
-    </a>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darija Beats — Darija Guides</title>
+<link rel="icon" type="image/png" href="nlogo.png">
+<style>
+:root {
+    --primary:#bc6c25;
+    --secondary:#f5f5dc;
+    --bg:#f5f5dc;
+    --text:#333;
+    --card-shadow: rgba(0,0,0,0.1);
+    --hover-glow: rgba(188,108,37,0.2);
+}
+body { font-family: 'Arial', sans-serif; background: var(--bg); color: var(--text); margin:0; padding:0; }
+
+/* Header */
+header { display:flex; justify-content:space-between; align-items:center; padding:15px 30px; background: var(--secondary); position:sticky; top:0; z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.15); }
+
+/* Logo with enhanced airborne 3D animation */
+.logo img {
+width:120px;
+border-radius:20px;
+transform-style: preserve-3d;
+animation: floatAir 6s ease-in-out infinite alternate;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.logo img:hover {
+transform: scale(1.05);
+}
+@keyframes floatAir {
+0%   { transform: translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+15%  { transform: translateY(-5px) rotateX(1.2deg) rotateY(2deg) rotateZ(0.8deg); }
+30%  { transform: translateY(-10px) rotateX(-1deg) rotateY(1deg) rotateZ(-0.6deg); }
+45%  { transform: translateY(-6px) rotateX(0.5deg) rotateY(-1.5deg) rotateZ(1deg); }
+60%  { transform: translateY(-8px) rotateX(-0.7deg) rotateY(2deg) rotateZ(-0.8deg); }
+75%  { transform: translateY(-4px) rotateX(1deg) rotateY(-2deg) rotateZ(0.5deg); }
+90%  { transform: translateY(-7px) rotateX(-0.5deg) rotateY(1deg) rotateZ(-0.5deg); }
+100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+}
+
+.menu-icon { display:none; font-size:28px; cursor:pointer; }
+.nav-right { display:flex; gap:20px; }
+.nav-right a { text-decoration:none; font-weight:bold; color: var(--text); transition: color 0.3s; }
+.nav-right a:hover { color: var(--primary); }
+@media(max-width:768px){ .menu-icon{display:block;} .nav-right{display:none; flex-direction:column; width:100%; margin-top:15px;} #menu-toggle:checked + .menu-icon + .nav-right{display:flex;} }
+#menu-toggle{ display:none; }
+
+/* Lessons Section */
+section#lessons { padding:50px 20px; max-width:1000px; margin:0 auto; }
+section#lessons h2 { text-align:center; font-size:36px; margin-bottom:20px; color: var(--primary); }
+section#lessons p.guide-intro { text-align:center; font-size:18px; margin-bottom:40px; max-width:800px; margin-left:auto; margin-right:auto; color:#555; }
+
+/* Lesson cards */
+.lesson { border-radius:20px; box-shadow:0 8px 20px var(--card-shadow); margin-bottom:30px; padding:25px; opacity:0; transform: translateY(60px); transition: all 0.8s ease, box-shadow 0.3s, transform 0.3s; border-left: 6px solid var(--primary); background:#fff; }
+.lesson.visible { opacity:1; transform:translateY(0); }
+.lesson:hover { transform: translateY(-5px); box-shadow:0 12px 25px var(--hover-glow); }
+.lesson h3 { color: var(--primary); margin-bottom:15px; display:flex; align-items:center; gap:10px; font-size:24px; }
+.lesson h3 span.icon { display:inline-block; animation: bounce 1.3s infinite; font-size:28px; }
+@keyframes bounce {0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);} }
+
+.lesson ul { list-style:none; padding-left:0; }
+.lesson li { margin-bottom:12px; position:relative; padding-left:30px; font-weight:500; }
+.lesson li::before { content:"🎯"; position:absolute; left:0; }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><a href="index.html"><img src="newlogo.png" alt="Darija Beats Logo"></a></div>
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="menu-icon">&#9776;</label>
+  <nav class="nav-right">
+    <a href="index.html">Home</a>
+    <a href="lessons.html">Lessons</a>
+    <a href="daily.html">Daily Beats</a>
+    <a href="online.html">Online Lessons</a>
+    <a href="contact.html">Contact</a>
+    <a href="about.html">About Us</a>
+    <a href="social.html">Social Media</a>
+  </nav>
+</header>
+
 <section id="lessons">
-    <h2>📚 Basic Lessons</h2>
-    <div class="lesson">
-      <h3>📖 Pronunciation</h3>
-      <p>Darija has some unique sounds that may be different from other Arabic dialects. Here are some tips:</p>
-      <ul>
-        <li>3a = ع (Ayn) - A voiced pharyngeal fricative sound.</li>
-        <li>7a or ha = ح (Haa) - A voiceless pharyngeal fricative sound.</li>
-        <li>9 a or qa = ق (Qaf) - A voiceless uvular stop sound.</li>
-        <li>a2 = ء (Hamza) - A glottal stop sound.</li>
-        <li>ta2 = ط (Taa) - A voiceless emphatic alveolar stop sound.</li>
-        <li>kha = خ (Khaa) - A voiceless velar fricative sound.</li>
-        <li>gha = غ (Ghayn) - A voiced velar fricative sound.</li>
-        <li>ta = ة (Taa Marbuta) - A feminine marker at the end of words.</li>
-        <li>2a = ا (Alif) - A long vowel sound.</li>
-        <li>ba = ب (Baa) - A voiced bilabial stop sound.</li>
-        <li>ta = ت (Taa) - A voiceless alveolar stop sound.</li>
-        <li>tha = ث (Thaa) - A voiceless dental fricative sound.</li>
-        <li>j = ج (Jeem) - A voiced postalveolar fricative sound.</li>
-        </ul>
-      <p>Practice these sounds to improve your pronunciation!</p>
-    </div>
-      <div class="lesson">
-      <h3>👋 Greetings</h3>
-      <ul>
-        <li>Salam = Hello</li>
-        <li>Sbah lkhir = Good morning</li>
-        <li>Msa lkhir = Good evening</li>
-        <li>Bslaama = Goodbye</li>
-        <li>Chokran = Thank you</li>
-        <li>3afak = Please</li>
-        <li>La shokra 3la waajib = No thanks</li>
-        <li>Labas elik? = How are you?</li>
-        <li>ana Labas = I am fine</li>
-        <li>wnta? = And you?</li>
-      </ul>
-    </div>
-    <div class="lesson">
-      <h3>🔢 Numbers 1–30</h3>
-      <ul>
-        <li>Waḥed = One</li>
-        <li>Jouj = Two</li>
-        <li>Tlata = Three</li>
-        <li>Rb3a = Four</li>
-        <li>Khamsa = Five</li>
-        <li>Stta = Six</li>
-        <li>Sb3a = Seven</li>
-        <li>Tmnya = Eight</li>
-        <li>Ts3od = Nine</li>
-        <li>3ashra = Ten</li>
-        <li>hdach = eleven</li>
-        <li>tnash = twelve</li>
-        <li>tltach = thirteen</li>
-        <li>rba3tash = fourteen</li>
-        <li>khmstash = fifteen</li>
-        <li>sttash = sixteen</li>
-        <li>sba3tash = seventeen</li>
-        <li>tmntash = eighteen</li>
-        <li>tsa3tash = nineteen</li>
-        <li>3ashrin = twenty</li>
-        <li>wahed w3achrin = twenty one</li>
-        <li>tnayn w3achrin = twenty two</li>
-        <li>tlata w3achrin = twenty three</li>
-        <li>rb3a w3achrin = twenty four</li>
-        <li>khamsa w3ahrin = twenty five</li>
-        <li>sta w3achrin = twenty six</li>
-        <li>sb3a w3achrin = twenty seven</li>
-        <li>tmnya w3achrin = twenty eight</li>
-        <li>ts3oud w3achrin = twenty nine</li>
-        <li>tlaatin = thirty</li>
-      </ul>
-    </div>
-    <div class="lesson">
-      <h3>🗓 Days of the Week</h3>
-      <ul>
-        <li>Tneen = Monday</li>
-        <li>Tlat = Tuesday</li>
-        <li>Larbaa = Wednesday</li>
-        <li>Khmis = Thursday</li>
-        <li>Jmaa = Friday</li>
-        <li>Sabt = Saturday</li>
-        <li>lhad = Sunday</li>
-      </ul>
-    </div>
-    <div class="lesson">
-      <h3>🌍 Common Phrases</h3>
-      <ul>
-        <li>Fin kayn? = Where is it?</li>
-        <li>Shno smiytk? = What is your name?</li>
-        <li>Ana smiti... = My name is...</li>
-        <li>Chno khbark? = How are you?</li>
-        <li>Labas elik? = Are you okay?</li>
-        <li>Maalich = No problem</li>
-        <li>Hna = Here</li>
-        <li>Fin? = Where?</li>
-        <li>Shno? = What?</li>
-        <li>Shhal? = How much?</li>
-        <li>Shno katdir? = What are you doing?</li>
-      </ul>
-    </div>
-    <div class="lesson">
-      <h3>🍽 Food and Drink</h3>
-      <ul>
-        <li>Ma = Water</li>
-        <li>khobz = Bread</li>
-        <li>lham = Meat</li>
-        <li>khodra = Vegetables</li>
-        <li>disir = Fruits</li>
-        <li>atay = Tea</li>
-        <li>qahwa = Coffee</li>
-        <li>hlib = Milk</li>
-        <li>l3asir = Juice</li>
-        <li>zit = Oil</li>
-        <li>zit ziton = olive oil</li>
-        <li>3sel = honey</li>
-        <li>fermaj = cheese</li>
-      </ul>
-    </div>
-    <div class="lesson">
-      <h3>🗺 Directions</h3>
-      <ul>
-        <li>lemn = Right</li>
-        <li>lisr = Left</li>
-        <li>Qdam = Forward</li>
-        <li>lor = Backward</li>
-        <li>Foq = Up</li>
-        <li>T7t = Down</li>
-        <li>Qrib = Near</li>
-        <li>B3id = Far</li>
-        <li>Fin kayn? = Where is it?</li>
-    </div>
-    <div class="lesson">
-      <h3>🛒 Shopping</h3>
-      <ul>
-        <li>Shhal? = How much?</li>
-        <li>3tini = Give me</li>
-        <li>3jebni = I like it</li>
-        <li>la = No</li>
-        <li>ah = Yes</li>
-        <li>kifash? = How?</li>
-        <li>fin? = Where?</li>
-        <li>shno? = What?</li>
-        <li>3ndk? = Do you have?</li>
-      </ul>
-    </div>
-    <div class="lesson">
-      <h3>🏨 Accommodation</h3>
-      <ul>
-        <li>hotel = Hotel</li>
-        <li>biit = Room</li>
-       <li>doch = shower</li>
-        <li>l7af = Blanket</li>
-        <li>wsada = Pillow</li>
-        <li>lhit = wall</li>
-      </ul>
-    </div>
-    <div class="lesson">
-      <h3>🚗 Transportation</h3>
-      <ul>
-        <li>taxi = Taxi</li>
-        <li>bus = Bus</li>
-        <li>qitaar = Train</li>
-        <li>tomobil = Car</li>
-        <li>motor = Motorcycle</li>
-      </ul>
-    </div>
-    <div class="lesson">
-      <h3>🏥 Health</h3>
-      <ul>
-        <li>tbib = Doctor</li>
-        <li>dwa = Medicine</li>
-        <li>l7al = Solution</li>
-        <li>seha = Health</li>
-        <li>l3qel = Mind</li>
-      </ul>
-    </div>
-    <div class="lesson">
-      <h3>🏖 Leisure</h3>
-      <ul>
-        <li>l3ab = Play</li>
-        <li>qra = Read</li>
-        <li>lmusiqa = Music</li>
-        <li>film = Movie</li>
-        <li>riyada = Sport</li>
-        <li>7afla = Party</li>
-      </ul>
-    </div>
-   <div class="lesson">
-      <h3>🏞 Nature</h3>
-      <ul>
-        <li>jbel = Mountain</li>
-        <li>nahr = River</li>
-        <li>b7ar = Sea</li>
-        <li>ghaba = Forest</li>
-        <li>sahra = Desert</li>
-        <li>l7ayawanat = Animals</li>
-      </ul>
-    </div>
-    <div class="lesson">
-      <h3>🏛 Culture</h3>
-      <ul>
-        <li>tarikh = History</li>
-        <li>l2adab = Literature</li>
-        <li>lfan = Art</li>
-        <li>l3ilm = Science</li>
-        <li>l3a9ida = Religion</li>
-        <li>l3a9l = Mind</li>
-        <li>l7ikma = Wisdom</li>
-        <li>l7ayat = Life</li>
-      </ul>
-      </div>
-    <div class="lesson">
-      <h3>🏙 City Life</h3>
-      <ul>
-        <li>mdina = City</li>
-        <li>suq = Market</li>
-        <li>bus = Bus</li>
-        <li>lqahwa = Coffee shop</li>
-        <li>lma7al = Store</li>
-        <li>l7ammam = Bathhouse</li>
-        <li>masjid or jama3 = Mosque</li>
-        <li>hadiqa = Park</li>
-      </ul>
-      </div>
-    <div class="lesson">
-      <h3>🏡 Home Life</h3>
-      <ul>
-        <li>dar = House</li>
-        <li>kozina = kitchen</li>
-        <li>bit n3as = bedroom</li>
-        <li>l7ammam = Bathroom</li>
-        <li>stah = rooftop</li>
-        <li>sala = family room</li>
-        <li>droj = stairs</li>
-      </ul>
-    </div>
-    <div class="lesson">
-      <h3>👨‍👩‍👧‍👦 Family</h3>
-      <ul>
-        <li>walid = Father</li>
-        <li>weld = Son</li>
-        <li>bent = Daughter</li>
-        <li>okht = Sister</li>
-        <li>jed = Grandfather</li>
-        <li>jeda = Grandmother</li>
-        <li>3em = Uncle</li>
-        <li>3ema= Aunt</li>
-      </ul>  
-    </div>
-    </section>
-    <style>
-         body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #fefae0;
-      color: #333;
-    }
-    header {
-      background-color: #d4a373;
-      padding: 20px;
-      color: white;
-      text-align: center;
-    }
-    nav {
-      background-color: #faedcd;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      padding: 10px 0;
-    }
-    nav a {
-      text-decoration: none;
-      color: #333;
-      font-weight: bold;
-    }
-    nav a:hover {
-      color: #bc6c25;
-    }
-    section {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .lesson, .quiz {
-      background-color: #fff;
-      border-radius: 12px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      margin: 20px auto;
-      max-width: 600px;
-      padding: 20px;
-      text-align: left;
-    }
-        #lessons {
-            background-color: #fefae0;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        .lesson {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        h2 {
-            color: #333;
-        }
-        h3 {
-            color: #555;
-        }
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        li {
-            margin-bottom: 5px;
-        }
-        li::before {
-            content: "✔️";
-            margin-right: 5px;
-            color: #4CAF50;
-        }
-        @media (max-width: 600px) {
-            #lessons {
-                padding: 10px;
-            }
-            .lesson {
-                padding: 5px;
-            }
-        }
-        .main-logo {
-            display: block;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .main-logo img {
-            max-width: 100%;
-            height: auto;
-        }
-        .main-logo a {
-            text-decoration: none;
-            color: #333;
-        }
-        .main-logo a:hover {
-            text-decoration: underline;
-        }
-        .main-logo h1 {
-            font-size: 24px;
-            margin-top: 10px;
-        }
-        .main-logo h2 {
-            font-size: 18px;
-            margin-top: 5px;
-        }
-        .main-logo h3 {
-            font-size: 16px;
-            margin-top: 5px;
-        }
-        .main-logo h4 {
-            font-size: 14px;
-            margin-top: 5px;
-        }
-        .main-logo {
-  width: 200px;
-  max-width: 90%;
-  display: block;
-  margin: 20px auto;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-  border-radius: 24px;
-}
-.main-logo:hover {
-  transform: scale(1.05);
-}
-    </style>
-    </head>
-    </html>
-    
+<h2>📚 Darija Guides</h2>
+<p class="guide-intro">Darija Guides are designed to help beginners and learners of Moroccan Arabic navigate essential phrases, pronunciation, numbers, everyday expressions, shopping, and directions. Each section gives you a clear, practical reference so you can confidently understand and speak Darija in real-life situations.</p>
+
+<!-- Pronunciation -->
+
+<div class="lesson">
+<h3><span class="icon">🗣</span> Pronunciation</h3>
+<ul>
+<li>3a = ع (Ayn)</li>
+<li>7a = ح (Haa)</li>
+<li>9a = ق (Qaf)</li>
+<li>kha = خ (Khaa)</li>
+<li>gha = غ (Ghayn)</li>
+<li>ta = ة (Taa Marbuta)</li>
+<li>ba = ب (Baa)</li>
+<li>ta = ت (Taa)</li>
+<li>j = ج (Jeem)</li>
+</ul>
+</div>
+
+<!-- Greetings -->
+
+<div class="lesson">
+<h3><span class="icon">👋</span> Greetings</h3>
+<ul>
+<li>Salam = Hello</li>
+<li>Sbah lkhir = Good morning</li>
+<li>Msa lkhir = Good evening</li>
+<li>Bslaama = Goodbye</li>
+<li>Chokran = Thank you</li>
+<li>3afak = Please</li>
+<li>Labas elik? = How are you?</li>
+<li>ana Labas = I am fine</li>
+<li>wnta? = And you?</li>
+</ul>
+</div>
+
+<!-- Numbers -->
+
+<div class="lesson">
+<h3><span class="icon">🔢</span> Numbers 1–30</h3>
+<ul>
+<li>Waḥed = One</li>
+<li>Jouj = Two</li>
+<li>Tlata = Three</li>
+<li>Rb3a = Four</li>
+<li>Khamsa = Five</li>
+<li>Stta = Six</li>
+<li>Sb3a = Seven</li>
+<li>Tmnya = Eight</li>
+<li>Ts3od = Nine</li>
+<li>3ashra = Ten</li>
+<li>Hdach = Eleven</li>
+<li>Tnash = Twelve</li>
+<li>Tltash = Thirteen</li>
+<li>Rba3tash = Fourteen</li>
+<li>KhmsTash = Fifteen</li>
+<li>Sttash = Sixteen</li>
+<li>Sb3Tash = Seventeen</li>
+<li>Tmntash = Eighteen</li>
+<li>Tsa3Tash = Nineteen</li>
+<li>3ashrin = Twenty</li>
+<li>Waḥed w3ashrin = Twenty-one</li>
+<li>tnain w3ashrin = Twenty-two</li>
+<li>Tlata w3ashrin = Twenty-three</li>
+<li>Rb3a w3ashrin = Twenty-four</li>
+<li>Khamsa w3ashrin = Twenty-five</li>
+<li>Stta w3ashrin = Twenty-six</li>
+<li>Sb3a w3ashrin = Twenty-seven</li>
+<li>Tmnya w3ashrin = Twenty-eight</li>
+<li>Ts3a w3ashrin = Twenty-nine</li>
+<li>Tlatin = Thirty</li>
+</ul>
+</div>
+
+<!-- Everyday Expressions -->
+
+<div class="lesson">
+<h3><span class="icon">💬</span> Everyday Expressions</h3>
+<ul>
+<li>Shno smiytk? = What’s your name?</li>
+<li>Ana smiti ... = My name is ...</li>
+<li>Fin ghaadi? = Where are you going?</li>
+<li>Mzyan = Good</li>
+<li>Ma mzianch = Not good</li>
+<li>Nqdr n3awnk? = Can I help you?</li>
+<li>Kif dayer? = How are you doing?</li>
+</ul>
+</div>
+
+<!-- Shopping -->
+
+<div class="lesson">
+<h3><span class="icon">🛒</span> Shopping</h3>
+<ul>
+<li>Bsh7al? = How much?</li>
+<li>Bghit hadi = I want this</li>
+<li>Ma bghitsh = I don’t want</li>
+<li>3tini ... = Give me ...</li>
+<li>rkhis = Cheap</li>
+<li>Ghali = Expensive</li>
+</ul>
+</div>
+
+<!-- Directions -->
+
+<div class="lesson">
+<h3><span class="icon">🗺</span> Directions</h3>
+<ul>
+<li>Fin? = Where?</li>
+<li>Lesr = Left</li>
+<li>Lemn = Right</li>
+<li>Qddam = Forward</li>
+<li>Lor = Back</li>
+<li>Qrib = Near</li>
+<li>B3id = Far</li>
+</ul>
+</div>
+
+</section>
+
+<script>
+const lessons = document.querySelectorAll('.lesson');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+},{threshold:0.2});
+lessons.forEach(lesson=>observer.observe(lesson));
+</script>
+
+</body>
+</html>
