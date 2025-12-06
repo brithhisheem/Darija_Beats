@@ -128,6 +128,23 @@
       }
 
       main { margin-right: 0; padding: 20px; }
+
+      .logo-animation {
+  display: inline-block;
+  perspective: 1000px; /* adds 3D depth */
+}
+
+.logo-animation img {
+  width: 120px; /* adjust as needed */
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  transform-style: preserve-3d;
+}
+
+.logo-animation:hover img {
+  transform: rotateY(20deg) rotateX(10deg) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
     }
   </style>
 </head>
@@ -194,6 +211,14 @@
         }, index * 150);
       });
     });
+
+     const logo = document.querySelector('.logo-animation img');
+
+let angle = 0;
+setInterval(() => {
+  angle += 0.5;
+  logo.style.transform = `rotateY(${angle}deg) rotateX(5deg)`;
+}, 50);
   </script>
 </body>
 </html>
