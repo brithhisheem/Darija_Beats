@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -79,9 +80,22 @@
       transition: transform 0.3s ease;
       cursor: pointer;
       border-radius: 12px;
+      transform-style: preserve-3d;
+      animation: float3D 6s ease-in-out infinite alternate;
     }
 
     .main-logo:hover { transform: scale(1.05); }
+
+    @keyframes float3D {
+      0%   { transform: translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+      15%  { transform: translateY(-5px) rotateX(1deg) rotateY(2deg) rotateZ(0.5deg); }
+      30%  { transform: translateY(-10px) rotateX(-1deg) rotateY(1deg) rotateZ(-0.5deg); }
+      45%  { transform: translateY(-6px) rotateX(0.5deg) rotateY(-1deg) rotateZ(1deg); }
+      60%  { transform: translateY(-8px) rotateX(-0.7deg) rotateY(2deg) rotateZ(-0.8deg); }
+      75%  { transform: translateY(-4px) rotateX(1deg) rotateY(-2deg) rotateZ(0.5deg); }
+      90%  { transform: translateY(-7px) rotateX(-0.5deg) rotateY(1deg) rotateZ(-0.5deg); }
+      100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+    }
 
     /* Main content */
     main {
@@ -129,7 +143,7 @@
 
       main { margin-right: 0; padding: 20px; }
 
-      .logo-animation {
+.logo-animation {
   display: inline-block;
   perspective: 1000px; /* adds 3D depth */
 }
@@ -147,6 +161,7 @@
 
     }
   </style>
+
 </head>
 <body>
   <header>
@@ -167,9 +182,11 @@
       <p>Happy learning! / نتمنى لك التعلم السعيد!</p>
     </section>
 
-    <footer>
-      <p>&copy; 2025 Darija Beats, Made with love from Morocco.</p>
-    </footer>
+
+<footer>
+  <p>&copy; 2025 Darija Beats, Made with love from Morocco.</p>
+</footer>
+
   </main>
 
   <nav>
@@ -212,14 +229,17 @@
       });
     });
 
-     const logo = document.querySelector('.logo-animation img');
+    const logo = document.querySelector('.logo-animation img');
 
 let angle = 0;
 setInterval(() => {
   angle += 0.5;
   logo.style.transform = `rotateY(${angle}deg) rotateX(5deg)`;
 }, 50);
+
   </script>
+
 </body>
 </html>
+
 
