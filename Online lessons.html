@@ -1,242 +1,329 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" type="image/png" href="nlogo.png">
-  <title>Darija Beats — Online Lessons</title>
-  <style>
-    .main-logo {
-      width: 200px;
-      max-width: 90%;
-      display: block;
-      margin: 20px auto;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-      border-radius: 24px;
-    }
-    .main-logo:hover {
-      transform: scale(1.05);
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Darija Beats — Online Lessons</title>
+<link rel="icon" type="image/png" href="nlogo.png">
 
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #fdf6e3;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
+<style>
+:root {
+  --brand: #fed4a3;
+  --brand-dark: #fed4a3;
+  --muted: #555555;
+  --bg: #fefae0;
+  --card: #ffffff;
+  --radius: 14px;
+}
 
-    :root{
-      --brand: #fed4a3;
-      --brand-hover: #ffd6a0;
-      --brand-dark: #fed4a3;
-      --muted: #555555;
-      --bg: #fefae0;
-      --card: #ffffff;
-      --radius: 14px;
-    }
+/* Reset & Body */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: #333;
+  min-height: 100vh;
+}
 
-    *{box-sizing:border-box}
-    .container{max-width:1100px;margin:28px auto;padding:0 20px}
+/* Navbar */
+nav {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  z-index: 100;
+}
+nav a {
+  color: var(--brand-dark);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  padding: 4px 0;
+  transition: all 0.3s ease;
+}
+nav a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: var(--brand-dark);
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+nav a:hover::after { width: 100%; }
 
-    header{text-align:center;padding:20px 0}
+/* Logo */
+header {
+  text-align: center;
+  margin: 60px 0 40px 0;
+  perspective: 1000px;
+}
+.main-logo {
+  width: 180px;
+  max-width: 90%;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
+  border-radius: 12px;
+  transform-style: preserve-3d;
+  animation: floatLogo 10s ease-in-out infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+.main-logo:hover {
+  animation-play-state: paused;
+  transform: scale(1.05) translateZ(20px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+.main-logo::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, transparent 40%);
+  opacity: 0.8;
+  z-index: 2;
+  mix-blend-mode: screen;
+  animation: shineRotate 10s linear infinite;
+}
+.main-logo:hover::before { animation-play-state: paused; opacity:1; }
 
-    .hero {
-      background:linear-gradient(180deg,rgba(255,255,255,0.6),rgba(255,255,255,0.6)),url('hero-placeholder.jpg') center/cover no-repeat;
-      border-radius:var(--radius);
-      padding:34px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:28px;
-      overflow:hidden;
-      background-attachment: fixed; /* Parallax effect */
-      background-size: cover;
-    }
+/* Logo Keyframes */
+@keyframes floatLogo {
+  0% { transform: rotateX(0) rotateY(0) scale(1) translateY(0); }
+  25% { transform: rotateX(5deg) rotateY(10deg) scale(1.02) translateY(-5px); }
+  50% { transform: rotateX(-5deg) rotateY(-10deg) scale(1) translateY(0); }
+  75% { transform: rotateX(10deg) rotateY(5deg) scale(1.02) translateY(5px); }
+  100% { transform: rotateX(0) rotateY(0) scale(1) translateY(0); }
+}
+@keyframes shineRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 
-    .hero-left{
-      flex:1;
-      text-align:center;
-      opacity:0;
-      transform:translateY(20px);
-      transition: transform 0.6s ease, opacity 0.6s ease, box-shadow 0.3s ease;
-    }
-    .hero-left.show{opacity:1;transform:translateY(0);}
-    .hero-left:hover{box-shadow:0 6px 20px rgba(204, 213, 174, 0.3);border-radius:12px;}
-    .hero h2{margin:0;font-size:28px;color:var(--brand-dark);transition: text-shadow 0.3s ease;}
-    .hero-left:hover h2{text-shadow: 0 2px 6px rgba(204, 213, 174, 0.4);}
-    .hero p{margin:8px 0 18px;color:var(--muted);transition: text-shadow 0.3s ease;}
-    .hero-left:hover p{text-shadow: 0 1px 4px rgba(204, 213, 174, 0.3);}
+/* Hero Section */
+.hero {
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.6)), url('hero-placeholder.jpg') center/cover no-repeat;
+  border-radius: var(--radius);
+  padding: 34px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  overflow: hidden;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.hero-left {
+  flex:1;
+  text-align:center;
+  opacity:0;
+  transform: translateY(20px);
+  transition: transform 0.6s ease, opacity 0.6s ease, box-shadow 0.3s ease;
+}
+.hero-left.show { opacity:1; transform:translateY(0); }
+.hero-left:hover { box-shadow:0 6px 20px rgba(204,213,174,0.3); border-radius:12px; }
+.hero h2{margin:0;font-size:28px;color:var(--brand-dark);transition: text-shadow 0.3s ease;}
+.hero-left:hover h2{text-shadow:0 2px 6px rgba(204,213,174,0.4);}
+.hero p{margin:8px 0 18px;color:var(--muted);transition:text-shadow 0.3s ease;}
+.hero-left:hover p{text-shadow:0 1px 4px rgba(204,213,174,0.3);}
 
-    .btn{
-      background: var(--brand);
-      color: white;
-      padding: 12px 18px;
-      border-radius: 10px;
-      border: none;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 0;
-      height: 0;
-      background: rgba(204, 213, 174, 0.3);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      transition: width 0.4s ease, height 0.4s ease;
-    }
-    .btn:hover::after {
-      width: 200%;
-      height: 500%;
-    }
-    .btn:active {
-      transform: scale(0.95);
-    }
+/* Buttons */
+.btn {
+  background: var(--brand);
+  color: white;
+  padding: 12px 18px;
+  border-radius: 10px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.btn::after {
+  content: '';
+  position: absolute;
+  top:50%;
+  left:50%;
+  width:0;
+  height:0;
+  background: rgba(204,213,174,0.3);
+  border-radius:50%;
+  transform: translate(-50%,-50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+.btn:hover::after { width:200%; height:500%; }
+.btn:active { transform: scale(0.95); }
 
-    .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
-    .card{
-      background:var(--card);
-      padding:18px;
-      border-radius:12px;
-      box-shadow:0 8px 22px rgba(12,12,12,0.05);
-      display:flex;
-      flex-direction:column;
-      gap:12px;
-      opacity:0;
-      transform:translateY(30px);
-      transition: transform 0.6s ease, opacity 0.6s ease;
-    }
-    .card.show{
-      opacity:1;
-      transform:translateY(0);
-    }
-    .card:hover{
-      transform: translateY(-8px) scale(1.05);
-      box-shadow:0 12px 30px rgba(0,0,0,0.15);
-    }
-    .card h3{margin:0;color:var(--brand-dark)}
-    .features{list-style:none;padding:0;margin:0;color:var(--muted);font-size:14px}
-    .price-big{font-size:22px;font-weight:800}
-    .small-muted{font-size:13px;color:var(--muted)}
+/* Plans */
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px;}
+.card{
+  background: var(--card);
+  padding:18px;
+  border-radius:12px;
+  box-shadow:0 8px 22px rgba(12,12,12,0.05);
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  opacity:0;
+  transform:translateY(30px);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+.card.show{opacity:1; transform:translateY(0);}
+.card:hover{transform:translateY(-8px) scale(1.05); box-shadow:0 12px 30px rgba(0,0,0,0.15);}
+.card h3{margin:0;color:var(--brand-dark);}
+.features{list-style:none;padding:0;margin:0;color:var(--muted);font-size:14px;}
+.price-big{font-size:22px;font-weight:800;}
+.small-muted{font-size:13px;color:var(--muted);}
 
-    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
-    .panel{background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(12,12,12,0.04)}
+/* Secure Payment Section */
+.secure-payment.hero-left { opacity:0; transform:translateY(30px); transition: all 0.6s ease; }
+.secure-payment.hero-left.show { opacity:1; transform:translateY(0); }
 
-    footer{margin:34px 0 80px;padding-top:20px;border-top:1px solid rgba(0,0,0,0.04);text-align:center;color:var(--muted);font-size:13px}
+/* Footer */
+footer{margin:34px 0 80px;padding-top:20px;border-top:1px solid rgba(0,0,0,0.04);text-align:center;color:var(--muted);font-size:13px;}
 
-    @media (max-width:900px){.plans{grid-template-columns:repeat(2,1fr)}.hero{flex-direction:column}.hero-right{width:100%}.grid-2{grid-template-columns:1fr}}
-    @media (max-width:600px){.plans{grid-template-columns:1fr}.hero h2{font-size:22px}}
-  </style>
+@media(max-width:900px){.plans{grid-template-columns:repeat(2,1fr)}.hero{flex-direction:column}.grid-2{grid-template-columns:1fr}}
+@media(max-width:600px){.plans{grid-template-columns:1fr}.hero h2{font-size:22px}}
+
+/* Add this to your existing CSS */
+
+/* Space under navbar so it doesn't overlap content */
+.container {
+  padding-top: 120px; /* enough space for fixed navbar */
+}
+
+/* Space above the plans section and its title */
+#plans {
+  margin-top: 60px; /* adds space between hero/text and plan cards */
+}
+
+/* Space between plans and secure payment section */
+#secure-payment {
+  margin-top: 60px; /* pushes the section down */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+}
+
+/* Animate secure payment section */
+#secure-payment.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+</style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <a href="index.html">
-        <img src="newlogo.png" alt="Darija Beats Logo" class="main-logo">
-      </a>
-    </header>
 
-    <section class="hero">
-      <div class="hero-left" id="hero-left">
-        <div class="badge">Online Lessons • Native tutors</div>
-        <h2>Step into Moroccan Darija with friendly, practical lessons</h2>
-        <p>Practical conversation practice, pronunciation drills and downloadable PDFs — perfect for travelers, expats and language lovers.</p>
-      </div>
-    </section>
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="Darija Guides.html">📘 Darija Guides</a>
+  <a href="exercises.html">🎮 Exercises</a>
+  <a href="Daily Beats.html">🔁 Daily Beats</a>
+  <a href="Online lessons.html">💻 Online Lessons</a>
+  <a href="contact.html">📩 Contact</a>
+  <a href="about us.html">👤 About Us</a>
+  <a href="social.html">📱 Social Media</a>
+</nav>
 
-    <section id="plans">
-      <h2 style="text-align:center;">Choose your plan</h2>
-      <div class="plans" id="plans">
-        <article class="card">
-          <h3>Private Lesson</h3>
-          <div class="price-big">50 MAD / session</div>
-          <p class="small-muted">60 minutes — Personalized tutoring</p>
-          <ul class="features">
-            <li>★ One teacher, full attention</li>
-            <li>★ Personalized lesson plan</li>
-            <li>★ PDFs + practice sheets</li>
-          </ul>
-          <a class="btn" href="https://www.paypal.me/Hichambouirid" target="_blank">Book Now</a>
-        </article>
+<div class="container">
+  <header>
+    <a href="index.html">
+      <img src="newlogo.png" alt="Darija Beats Logo" class="main-logo">
+    </a>
+  </header>
 
-        <article class="card">
-          <h3>Group Session</h3>
-          <div class="price-big">40 MAD / session</div>
-          <p class="small-muted">60 minutes — Max 6 students</p>
-          <ul class="features">
-            <li>★ Conversation practice</li>
-            <li>★ Role-play & live correction</li>
-            <li>★ PDF summaries after class</li>
-          </ul>
-          <a class="btn" href="https://www.paypal.me/Hichambouirid" target="_blank">Book Now</a>
-        </article>
+  <section class="hero">
+    <div class="hero-left" id="hero-left">
+      <div class="badge">Online Lessons • Native tutors</div>
+      <h2>Step into Moroccan Darija with friendly, practical lessons</h2>
+      <p>Practical conversation practice, pronunciation drills and downloadable PDFs — perfect for travelers, expats and language lovers.</p>
+    </div>
+  </section>
 
-        <article class="card">
-          <h3>5 Private Sessions Pack</h3>
-          <div class="price-big">200 MAD / pack</div>
-          <p class="small-muted">5 sessions — Book anytime</p>
-          <ul class="features">
-            <li>★ Best for steady progress</li>
-            <li>★ Priority scheduling</li>
-            <li>★ Progress report</li>
-          </ul>
-          <a class="btn" href="https://www.paypal.me/Hichambouirid" target="_blank">Buy pack</a>
-        </article>
-      </div>
-    </section>
-     <!-- Secure Payment Section with Hero-style Animation -->
-    <section class="secure-payment hero-left" id="secure-payment">
-      <h3>Secure & Safe Payments</h3>
-      <p>All payments are processed securely via PayPal.</p>
-      <p>Your information is never shared, and transactions are fully protected.</p>
-      <p>Easy, fast, and safe — get your lessons instantly after payment!</p>
-    </section>
+  <section id="plans">
+    <h2 style="text-align:center;">Choose your plan</h2>
+    <div class="plans" id="plans">
+      <article class="card">
+        <h3>Private Lesson</h3>
+        <div class="price-big">50 MAD / session</div>
+        <p class="small-muted">60 minutes — Personalized tutoring</p>
+        <ul class="features">
+          <li>★ One teacher, full attention</li>
+          <li>★ Personalized lesson plan</li>
+          <li>★ PDFs + practice sheets</li>
+        </ul>
+        <a class="btn" href="https://www.paypal.me/Hichambouirid" target="_blank">Book Now</a>
+      </article>
 
-    <footer>© 2025 Darija Beats. All rights reserved.</footer>
-  </div>
+      <article class="card">
+        <h3>Group Session</h3>
+        <div class="price-big">40 MAD / session</div>
+        <p class="small-muted">60 minutes — Max 6 students</p>
+        <ul class="features">
+          <li>★ Conversation practice</li>
+          <li>★ Role-play & live correction</li>
+          <li>★ PDF summaries after class</li>
+        </ul>
+        <a class="btn" href="https://www.paypal.me/Hichambouirid" target="_blank">Book Now</a>
+      </article>
 
-  <script>
-    window.addEventListener('load', () => {
-      // Hero fade in
-      document.getElementById('hero-left').classList.add('show');
+      <article class="card">
+        <h3>5 Private Sessions Pack</h3>
+        <div class="price-big">200 MAD / pack</div>
+        <p class="small-muted">5 sessions — Book anytime</p>
+        <ul class="features">
+          <li>★ Best for steady progress</li>
+          <li>★ Priority scheduling</li>
+          <li>★ Progress report</li>
+        </ul>
+        <a class="btn" href="https://www.paypal.me/Hichambouirid" target="_blank">Buy pack</a>
+      </article>
+    </div>
+  </section>
 
-      // Animate cards with stagger
-      const cards = document.querySelectorAll('.card');
-      cards.forEach((card, index) => {
-        setTimeout(() => {
-          card.classList.add('show');
-        }, 200 * index);
-      });
-    });
-     window.addEventListener('load', () => {
-      // Hero fade in
-      document.getElementById('hero-left').classList.add('show');
+  <section class="secure-payment hero-left" id="secure-payment">
+    <h3>Secure & Safe Payments</h3>
+    <p>All payments are processed securely via PayPal.</p>
+    <p>Your information is never shared, and transactions are fully protected.</p>
+    <p>Easy, fast, and safe — get your lessons instantly after payment!</p>
+  </section>
 
-      // Animate cards with stagger
-      const cards = document.querySelectorAll('.card');
-      cards.forEach((card, index) => {
-        setTimeout(() => {
-          card.classList.add('show');
-        }, 200 * index);
-      });
+  <footer>© 2025 Darija Beats. All rights reserved.</footer>
+</div>
 
-      // Animate secure payment section like hero text
-      setTimeout(() => {
-        document.getElementById('secure-payment').classList.add('show');
-      }, 800);
-    });
-  </script>
+<script>
+window.addEventListener('load', () => {
+  // Animate hero
+  document.getElementById('hero-left').classList.add('show');
+
+  // Animate plan cards with stagger
+  const cards = document.querySelectorAll('.card');
+  cards.forEach((card,index) => {
+    setTimeout(()=>{card.classList.add('show')}, 200*index);
+  });
+
+  // Animate secure payment section
+  setTimeout(()=>{document.getElementById('secure-payment').classList.add('show')}, 800);
+});
+
+// Animate secure payment section like hero text
+setTimeout(() => {
+  document.getElementById('secure-payment').classList.add('show');
+}, 800);
+
+</script>
+
 </body>
 </html>
-
 
 
